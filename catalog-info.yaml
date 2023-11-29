@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tlandgraf-poi-map-app-dev
+  annotations:
+    argocd/app-name: tlandgraf-poi-map-app-dev
+    backstage.io/kubernetes-id: tlandgraf-poi-map-app
+    backstage.io/kubernetes-namespace: tlandgraf
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh23-lab/tlandgraf-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa-m9x67.dusy.p1.openshiftapps.com/dev-pipelines/ns/tlandgraf/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa-m9x67.dusy.p1.openshiftapps.com/k8s/ns/tlandgraf/deployments/tlandgraf-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa-m9x67.dusy.p1.openshiftapps.com/#https://github.com/rhdh23-lab/tlandgraf-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://tlandgraf-poi-map-app-tlandgraf.apps.rosa-m9x67.dusy.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/tobiaslandgrafprofi"
+  system: workshop-system-tlandgraf
+  consumesApis:
+    - gateway-api-tlandgraf
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-tlandgraf
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/tobiaslandgrafprofi"
